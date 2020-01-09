@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--Custom BLE GATT-->
+<gatt gatt_caching="true" generic_attribute_service="true" header="gatt_db.h" name="Custom BLE GATT" out="gatt_db.c" prefix="gattdb_">
+  
+  <!--Generic Access-->
+  <service advertise="false" name="Generic Access" requirement="mandatory" sourceId="org.bluetooth.service.generic_access" type="primary" uuid="1800">
+    <informativeText>Abstract: The generic_access service contains generic information about the device. All available Characteristics are readonly. </informativeText>
+    
+    <!--Device Name-->
+    <characteristic id="device_name" name="Device Name" sourceId="org.bluetooth.characteristic.gap.device_name" uuid="2A00">
+      <informativeText/>
+      <value length="10" type="utf-8" variable_length="false">BLE Device</value>
+      <properties read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+    </characteristic>
+    
+    <!--Appearance-->
+    <characteristic name="Appearance" sourceId="org.bluetooth.characteristic.gap.appearance" uuid="2A01">
+      <informativeText>Abstract: The external appearance of this device. The values are composed of a category (10-bits) and sub-categories (6-bits). </informativeText>
+      <value length="2" type="hex" variable_length="false">0003</value>
+      <properties const="true" const_requirement="optional" read="true" read_requirement="optional"/>
+    </characteristic>
+  </service>
+  
+  <!--Service-->
+  <service advertise="false" name="Service" requirement="mandatory" sourceId="custom.type" type="primary" uuid="a688d830-3cbd-4ce2-bf49-56ef5c971fac">
+    <informativeText>Custom service</informativeText>
+    
+    <!--Read-->
+    <characteristic id="read" name="Read" sourceId="custom.type" uuid="a645c9be-2ead-450c-8bc7-f05acd610f83">
+      <description>read</description>
+      <informativeText>Custom characteristic</informativeText>
+      <value length="512" type="user" variable_length="true">0x00</value>
+      <properties read="true" read_requirement="optional"/>
+    </characteristic>
+    
+    <!--Const-->
+    <characteristic id="const" name="Const" sourceId="custom.type" uuid="30537c87-c96b-4939-920f-7f4bba6f830f">
+      <description>const</description>
+      <informativeText>Custom characteristic</informativeText>
+      <value length="512" type="user" variable_length="true">0x00</value>
+      <properties const="true" const_requirement="optional"/>
+    </characteristic>
+    
+    <!--Write-->
+    <characteristic id="write" name="Write" sourceId="custom.type" uuid="796aa1c1-0447-45f3-99cf-b82bf553b315">
+      <description>write</description>
+      <informativeText>Custom characteristic</informativeText>
+      <value length="512" type="user" variable_length="true">0x00</value>
+      <properties write="true" write_requirement="optional"/>
+    </characteristic>
+    
+    <!--Write without response-->
+    <characteristic id="write_without_response" name="Write without response" sourceId="custom.type" uuid="796aa1c1-0447-45f3-99cf-b82bf553b315">
+      <description>write without response</description>
+      <informativeText>Custom characteristic</informativeText>
+      <value length="512" type="user" variable_length="true">0x00</value>
+      <properties write_no_response="true" write_no_response_requirement="optional"/>
+    </characteristic>
+    
+    <!--Notify-->
+    <characteristic id="notify" name="Notify" sourceId="custom.type" uuid="f9391eee-3c99-499b-85b9-b0220efcdb2c">
+      <description>notify</description>
+      <informativeText>Custom characteristic</informativeText>
+      <value length="512" type="user" variable_length="true">0x00</value>
+      <properties notify="true" notify_requirement="optional"/>
+    </characteristic>
+    
+    <!--Indicate-->
+    <characteristic id="indicate" name="Indicate" sourceId="custom.type" uuid="71f5dc4e-6e01-46ac-aedd-62a0ca10f547">
+      <description>indicate</description>
+      <informativeText>Custom characteristic</informativeText>
+      <value length="512" type="user" variable_length="true">0x00</value>
+      <properties indicate="true" indicate_requirement="optional"/>
+    </characteristic>
+    
+    <!--Characteristic-->
+    <characteristic name="Characteristic" sourceId="custom.type" uuid="f7a94bd9-3b43-4322-a7bc-a6eec2652953">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="1" type="hex" variable_length="false">0x00</value>
+    </characteristic>
+  </service>
+</gatt>
